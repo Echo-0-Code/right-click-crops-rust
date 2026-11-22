@@ -1,0 +1,12 @@
+Right-Click Crops for Horizon, modded-crops fork
+
+Original mod: Right-Click Crops 2.0.1 by AyanoKaito
+https://github.com/AyanoKaito/horizon-right-click-crops
+MIT License, see LICENSE (copyright notice kept as published).
+
+Fork changes (2.1.0): crops from other mods through the block tags
+right_click_crops:harvestable and right_click_crops:not_harvestable, with maturity read
+from each block's own age property, and a "Modded crops" setting. Same MIT License.
+
+The icon was generated with Google Gemini under AyanoKaito's direction (see the original
+project's THIRD_PARTY_NOTICES.md).

@@ -189,6 +189,53 @@ pub fn stem_fruit_profile(block: &str) -> Option<StemFruit> {
 }
 
 
+/// Blocks in this block tag are harvested as ordinary crops when their `age` is at its maximum.
+/// It ships holding `#minecraft:crops`, where mods put their crops; a data pack can add more.
+pub const HARVESTABLE_TAG: &str = "right_click_crops:harvestable";
+/// Blocks in this tag are never harvested by the tag rule (stems and other members of
+/// `#minecraft:crops` that are not "harvest and replant" crops).
+pub const EXCLUDED_TAG: &str = "right_click_crops:not_harvestable";
+/// The setting that switches the tag rule on and off.
+pub const MODDED_SETTING: &str = "modded_crops";
+#[cfg_attr(not(test), allow(dead_code))]
+pub const MODDED_LABEL: &str = "Modded crops";
+
+/// A crop found by the tag rule: the age it replants at and the age that counts as mature.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct AgeRange {
+    pub young: String,
+    pub mature: String,
+}
+
+/// The rule for a block outside the explicit profiles. `tagged` and `excluded` are the tag reads
+/// (None when tags are not loaded yet), `properties` the block's state definition and `age` the
+/// clicked state's current age. A mature crop gives its age range; anything else is left alone.
+///
+/// The maximum comes from the block's own definition, so a mod's crop with age 0..3 or 0..7 needs
+/// no table entry. Two-block crops (a `half` property) are refused: harvesting one half would
+/// leave the other floating.
+pub fn tag_crop(
+    tagged: Option<bool>,
+    excluded: Option<bool>,
+    properties: &[(&str, &[String])],
+    age: Option<&str>,
+) -> Option<AgeRange> {
+    if tagged != Some(true) || excluded != Some(false) {
+        return None;
+    }
+    if properties.iter().any(|(name, _)| *name == "half") {
+        return None;
+    }
+    let (_, values) = properties.iter().find(|(name, _)| *name == "age")?;
+    let ages: Vec<(u32, &String)> = values.iter().filter_map(|v| Some((v.parse().ok()?, v))).collect();
+    if ages.len() < 2 || ages.len() != values.len() {
+        return None;
+    }
+    let young = ages.iter().min_by_key(|(n, _)| *n)?.1.clone();
+    let mature = ages.iter().max_by_key(|(n, _)| *n)?.1.clone();
+    (age == Some(mature.as_str())).then_some(AgeRange { young, mature })
+}
+
 pub trait SeedStack {
     fn item(&self) -> &str;
     fn count(&self) -> u32;
@@ -411,6 +458,81 @@ mod tests {
         for ordinary in ["minecraft:sweet_berry_bush", "minecraft:cave_vines", "minecraft:cave_vines_plant"] {
             assert_eq!(Plant::from_block(ordinary), None);
         }
+    }
+
+    fn ages(n: u32) -> Vec<String> {
+        (0..=n).map(|a| a.to_string()).collect()
+    }
+
+    #[test]
+    fn tag_rule_harvests_only_tagged_mature_single_block_crops() {
+        let seven = ages(7);
+        let three = ages(3);
+        let crop: [(&str, &[String]); 1] = [("age", &seven)];
+        let small: [(&str, &[String]); 1] = [("age", &three)];
+        let mature = AgeRange { young: "0".into(), mature: "7".into() };
+        assert_eq!(tag_crop(Some(true), Some(false), &crop, Some("7")), Some(mature));
+        assert_eq!(
+            tag_crop(Some(true), Some(false), &small, Some("3")),
+            Some(AgeRange { young: "0".into(), mature: "3".into() })
+        );
+        for age in [None, Some("0"), Some("6")] {
+            assert_eq!(tag_crop(Some(true), Some(false), &crop, age), None);
+        }
+        assert_eq!(tag_crop(Some(true), Some(false), &small, Some("7")), None);
+    }
+
+    #[test]
+    fn tag_rule_needs_the_tag_no_exclusion_and_loaded_tags() {
+        let seven = ages(7);
+        let crop: [(&str, &[String]); 1] = [("age", &seven)];
+        for (tagged, excluded) in [
+            (Some(false), Some(false)),
+            (None, Some(false)),
+            (Some(true), Some(true)),
+            (Some(true), None),
+        ] {
+            assert_eq!(tag_crop(tagged, excluded, &crop, Some("7")), None);
+        }
+    }
+
+    #[test]
+    fn tag_rule_refuses_two_block_crops_and_odd_ages() {
+        let seven = ages(7);
+        let halves = vec!["lower".to_string(), "upper".to_string()];
+        let tall: [(&str, &[String]); 2] = [("age", &seven), ("half", &halves)];
+        assert_eq!(tag_crop(Some(true), Some(false), &tall, Some("7")), None);
+        let none: [(&str, &[String]); 0] = [];
+        assert_eq!(tag_crop(Some(true), Some(false), &none, None), None);
+        let one = ages(0);
+        let single: [(&str, &[String]); 1] = [("age", &one)];
+        assert_eq!(tag_crop(Some(true), Some(false), &single, Some("0")), None);
+        let named = vec!["young".to_string(), "old".to_string()];
+        let words: [(&str, &[String]); 1] = [("age", &named)];
+        assert_eq!(tag_crop(Some(true), Some(false), &words, Some("old")), None);
+    }
+
+    #[test]
+    fn tag_rule_reads_ages_by_number_not_by_order() {
+        let shuffled: Vec<String> = ["3", "10", "0", "2"].map(String::from).to_vec();
+        let crop: [(&str, &[String]); 1] = [("age", &shuffled)];
+        assert_eq!(
+            tag_crop(Some(true), Some(false), &crop, Some("10")),
+            Some(AgeRange { young: "0".into(), mature: "10".into() })
+        );
+    }
+
+    #[test]
+    fn shipped_tags_cover_mod_crops_and_exclude_non_replant_vanilla_members() {
+        let harvestable = include_str!("../data/right_click_crops/tags/block/harvestable.json");
+        assert!(harvestable.contains("\"#minecraft:crops\""));
+        let excluded = include_str!("../data/right_click_crops/tags/block/not_harvestable.json");
+        for block in ["minecraft:melon_stem", "minecraft:pumpkin_stem", "minecraft:torchflower_crop"] {
+            assert!(excluded.contains(&format!("\"{block}\"")), "{block} not excluded");
+            assert_eq!(Plant::from_block(block), None);
+        }
+        let lang = include_str!("../assets/right_click_crops/lang/en_us.json");
+        assert!(lang.contains(&format!("\"{MOD_ID}.setting.{MODDED_SETTING}\": \"{MODDED_LABEL}\"")));
     }
 
     #[test]

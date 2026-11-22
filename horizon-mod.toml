@@ -1,8 +1,8 @@
 id = "right_click_crops"
 name = "Right-Click Crops"
-version = "2.0.1"
-description = "Survival harvesting with individual settings for sixteen plant families."
-authors = ["AyanoKaito"]
+version = "2.1.0"
+description = "Survival harvesting with individual settings for sixteen plant families, plus modded crops through the right_click_crops:harvestable block tag."
+authors = ["AyanoKaito", "Echo-0-Code (modded crops)"]
 license = "MIT"
 license_url = "https://github.com/AyanoKaito/horizon-right-click-crops/blob/main/LICENSE"
 homepage = "https://github.com/AyanoKaito/horizon-right-click-crops"
@@ -13,5 +13,5 @@ side = "both"
 capabilities = ["registries"]
 
 [wasm]
-sha512 = "726398d696b4b7ae849fa1d6a77a6066151075e89c1843e2985f0a94b3f40717d2454468444e7fa1b5420f930992487fee8323a5ae653fe8869c7cb866a1f5b1"
+sha512 = "f6b4f597b402419ed6916cf7add904e1c27cc25862c1e8aeebe7467f2fb8875ab6db14f098de98e2655d35860d1136ed77af4328dddb7c632681504f39dd38b7"
 toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"

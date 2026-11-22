@@ -17,12 +17,15 @@ struct Mod;
 
 #[mod_api::horizon_mod]
 impl Hooks for Mod {
-    /// One on/off setting per plant family, on the mod's page in Options > Mods.
+    /// One on/off setting per plant family, plus one for tag crops, on the mod's page in Options > Mods.
     fn register(&self, registrar: &mut dyn Registrar, _: &RegistrationContext) {
         for plant in core::Plant::ALL {
             if let Err(error) = registrar.register_setting(harvest::setting(plant)) {
                 eprintln!("[{}] Setting {} not registered: {error:?}", core::MOD_ID, plant.key());
             }
+        }
+        if let Err(error) = registrar.register_setting(harvest::modded_setting()) {
+            eprintln!("[{}] Setting {} not registered: {error:?}", core::MOD_ID, core::MODDED_SETTING);
         }
     }
 

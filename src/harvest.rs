@@ -3,7 +3,7 @@
 //! The client and the server run the same `target` choice. Only the server changes anything:
 //! it rolls the block's own loot, writes the blocks, pays for replanting and drops the rest.
 
-use crate::core::{self, Crop, Payment, Plant, SeedStack};
+use crate::core::{self, Payment, Plant, SeedStack};
 use mod_api::{
     BlockClick, BlockState, BlockUpdateFlags, ClientHost, EntityRef, EquipmentSlot, GameMode,
     GameRuleValue, Hand, Host, HostBlockStates, ItemStack, LevelRef, PlayerRef, ServerHost,
@@ -15,16 +15,36 @@ pub fn setting(plant: Plant) -> SettingSpec {
     SettingSpec::toggle(plant.key(), plant.label_key(), true)
 }
 
+/// The on/off setting for crops found through the `right_click_crops:harvestable` tag.
+pub fn modded_setting() -> SettingSpec {
+    SettingSpec::toggle(core::MODDED_SETTING, format!("{}.setting.{}", core::MOD_ID, core::MODDED_SETTING), true)
+}
+
+fn enabled(host: &dyn Host, spec: SettingSpec, key: &str) -> bool {
+    let stored = host.setting(core::MOD_ID, key);
+    !matches!(spec.read(stored.as_deref()), SettingValue::Toggle(false))
+}
+
 fn plant_enabled(host: &dyn Host, plant: Plant) -> bool {
-    let stored = host.setting(core::MOD_ID, plant.key());
-    !matches!(setting(plant).read(stored.as_deref()), SettingValue::Toggle(false))
+    enabled(host, setting(plant), plant.key())
+}
+
+/// What the harvested spot becomes when a seed pays for it.
+enum Young {
+    /// Another block (torchflower goes back to its crop block).
+    Block(&'static str),
+    /// The same block at this age.
+    Age(String),
 }
 
 struct CropTarget {
     pos: [i32; 3],
     state: BlockState,
     name: String,
-    crop: Crop,
+    planting_item: String,
+    young: Young,
+    // Cocoa and tag crops use the game's own survival rule: the young state is the same block.
+    support_below: Option<&'static str>,
     upper: Option<([i32; 3], BlockState)>,
 }
 
@@ -82,7 +102,9 @@ fn target(host: &dyn Host, player: PlayerRef, level: LevelRef, click: &BlockClic
     let hit = click.pos;
     let clicked = world.state(hit)?;
     let clicked_name = clicked.block().id(host);
-    let plant = Plant::from_block(&clicked_name)?;
+    let Some(plant) = Plant::from_block(&clicked_name) else {
+        return tag_target(host, &world, hit, clicked, clicked_name);
+    };
     if !plant_enabled(host, plant) {
         return None;
     }
@@ -155,7 +177,49 @@ fn target(host: &dyn Host, player: PlayerRef, level: LevelRef, click: &BlockClic
     } else {
         None
     };
-    Some(Target::Crop(CropTarget { pos, state, name, crop, upper }))
+    let young = match crop.initial_block {
+        Some(block) => Young::Block(block),
+        None => Young::Age("0".into()),
+    };
+    Some(Target::Crop(CropTarget {
+        pos,
+        state,
+        name,
+        planting_item: crop.planting_item.into(),
+        young,
+        support_below: crop.support_below,
+        upper,
+    }))
+}
+
+/// A block outside the sixteen vanilla families: a crop when it is in the harvestable tag, not
+/// in the excluded tag, a single block, and at the maximum of its own `age` values. It replants
+/// with the block's own item (`Block.asItem`, the seed for a crop) at its lowest age.
+fn tag_target(host: &dyn Host, world: &World<'_>, pos: [i32; 3], state: BlockState, name: String) -> Option<Target> {
+    if !enabled(host, modded_setting(), core::MODDED_SETTING) {
+        return None;
+    }
+    let block = state.block();
+    let tagged = host.block_in_tag(block, core::HARVESTABLE_TAG);
+    let excluded = host.block_in_tag(block, core::EXCLUDED_TAG);
+    let definition = host.block_states().definition(block)?;
+    let properties: Vec<(&str, &[String])> =
+        definition.iter().map(|p| (p.name.as_str(), p.values.as_slice())).collect();
+    let age = world.property(pos, "age");
+    let range = core::tag_crop(tagged, excluded, &properties, age.as_deref())?;
+    let planting_item = host.block_item(block)?.id(host);
+    if planting_item == "minecraft:air" {
+        return None;
+    }
+    Some(Target::Crop(CropTarget {
+        pos,
+        state,
+        name,
+        planting_item,
+        young: Young::Age(range.young),
+        support_below: None,
+        upper: None,
+    }))
 }
 
 /// The client's side of a click: true when the server will treat it as a harvest, so the client
@@ -297,7 +361,7 @@ fn seen(host: &dyn Host, stack: &ItemStack) -> Seen {
 /// The main inventory (0 to 35) and the off hand (40), in that order.
 const OFF_HAND_SLOT: u32 = 40;
 
-/// Field crops, nether wart, cocoa, torchflower and pitcher crop: harvest and replant at age 0.
+/// Field crops, nether wart, cocoa, torchflower, pitcher crop and tag crops: harvest and replant young.
 fn harvest_crop(
     host: &mut dyn ServerHost,
     level: LevelRef,
@@ -306,12 +370,12 @@ fn harvest_crop(
     breaker: Option<EntityRef>,
     target: CropTarget,
 ) {
-    let CropTarget { pos, state, name, crop, upper } = target;
+    let CropTarget { pos, state, name, planting_item, young, support_below, upper } = target;
     let young = {
         let read: &dyn Host = host;
-        match crop.initial_block {
-            Some(initial) => read.block_state_id(initial),
-            None => state.with(&read.block_states(), "age", "0").ok(),
+        match &young {
+            Young::Block(initial) => read.block_state_id(initial),
+            Young::Age(age) => state.with(&read.block_states(), "age", age).ok(),
         }
     };
     let Some(young) = young else {
@@ -327,8 +391,7 @@ fn harvest_crop(
             let (x, z) = (f64::from(pos[0]), f64::from(pos[2]));
             x >= min_x && x < max_x && z >= min_z && z < max_z
         });
-        let supported = crop
-            .support_below
+        let supported = support_below
             .is_none_or(|support| world.name([pos[0], pos[1] - 1, pos[2]]).as_deref() == Some(support));
         if !inside || !supported {
             return;
@@ -353,7 +416,7 @@ fn harvest_crop(
         slots.iter().map(|(slot, stack)| (*slot as usize, seen(read, stack))).collect()
     };
     let payment = core::select_payment(
-        crop.planting_item,
+        &planting_item,
         &loot_seen,
         inventory_seen.iter().map(|(slot, stack)| (*slot, stack)),
     );

@@ -59,6 +59,10 @@
       "hash": "2d353896bfc60d68a3a8a07b850fc72a"
     },
     {
+      "id": "handle:BlockStates::definition",
+      "hash": "3b7d590d27a349a2d784b579d3b9d67f"
+    },
+    {
       "id": "handle:BlockStates::matches",
       "hash": "c4e212bd95183df00598a0afafebb6b3"
     },
@@ -145,6 +149,10 @@
     {
       "id": "handle:LevelKey::id",
       "hash": "1bc690e5ba73208a1627f4beb55f1852"
+    },
+    {
+      "id": "handle:LevelKey::parse",
+      "hash": "3473fb9ad9fd01d204b94010dab16578"
     },
     {
       "id": "handle:LevelRef::block",
@@ -235,6 +243,10 @@
       "hash": "987f844917f992966a371eea82546e7b"
     },
     {
+      "id": "handle:SettingSpec::range",
+      "hash": "5b8863407edea60f15f9b50629f681da"
+    },
+    {
       "id": "handle:SettingSpec::read",
       "hash": "04109ac08f69e0ba8bda5cd33082aa5c"
     },
@@ -245,6 +257,10 @@
     {
       "id": "handle:StateConstraint::new",
       "hash": "4f3c780a559078b6f886ffe8b4cf5d75"
+    },
+    {
+      "id": "handle:StateProperty::new",
+      "hash": "26e69bd4676382048e3aa38e7c0ed1c1"
     },
     {
       "id": "handle:Tag::id",
@@ -359,6 +375,10 @@
       "hash": "a84f77a46e7c761b659fb504b7cf8ef2"
     },
     {
+      "id": "method:LevelHost::block_in_tag",
+      "hash": "4f53aa8170d6be9c42b30e6d09ec15a6"
+    },
+    {
       "id": "method:LevelHost::block_state",
       "hash": "68751dd5387e02d7ee6a571c5bc5e812"
     },
@@ -376,6 +396,15 @@
     {
       "id": "method:item::item_stack::Component::id",
       "hash": "132586f5592abd99fc10ba106b753ce4"
+    },
+    {
+      "id": "method:prelude::BlockStatesHost::block_item",
+      "hash": "ee61f4d49b1dcebb5edc243e33c048bc",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
     },
     {
       "id": "method:prelude::BlockStatesHost::block_state_id",
@@ -432,6 +461,15 @@
     {
       "id": "method:prelude::PlayersHost::player",
       "hash": "17d58c70c379efb80725f99428a4eb6d",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::TagsHost::block_in_tag",
+      "hash": "41e7cc233a800d25c2ad57ffdcbb4d52",
       "reached_from": [
         "trait:ClientHost",
         "trait:Host",
@@ -515,6 +553,10 @@
       "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
     },
     {
+      "id": "trait:prelude::TagsHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
       "id": "type:ArmPose",
       "hash": "98b3469e9995fd614f5a084f4d56d0b4",
       "impls": [
@@ -526,6 +568,10 @@
         "PartialEq",
         "Serialize"
       ]
+    },
+    {
+      "id": "type:ArmPose.Block",
+      "hash": "c73179f38decdb26e53b38cf7fac45be"
     },
     {
       "id": "type:ArmPose.Item",
@@ -541,7 +587,39 @@
         "Default",
         "PartialEq"
       ],
-      "built": "none"
+      "built": "full",
+      "fields_hash": "382077f071bf0802153b616edd617ed7",
+      "fields": [
+        "id",
+        "template",
+        "properties",
+        "state_light",
+        "shapes",
+        "collision_shapes",
+        "outline_context_shapes",
+        "collision_context_shapes",
+        "interaction_shapes",
+        "state_properties",
+        "default_state",
+        "item",
+        "open_sound",
+        "close_sound",
+        "block_item",
+        "pick_item",
+        "components",
+        "connects_to",
+        "thickness",
+        "wood_type",
+        "wall_block",
+        "sign_text_color",
+        "sign_text_glow",
+        "base_block"
+      ],
+      "built_at": "src/harvest.rs:181"
+    },
+    {
+      "id": "type:Block.block_item",
+      "hash": "c26a18dbab2b5552356200163dcfb2c2"
     },
     {
       "id": "type:Block.id",
@@ -550,6 +628,10 @@
     {
       "id": "type:Block.item",
       "hash": "e382aa46ed0cf0dbaf51dd44289fa471"
+    },
+    {
+      "id": "type:Block.properties",
+      "hash": "d2ccc46a0b245073941f2538d537ed13"
     },
     {
       "id": "type:BlockClick",
@@ -689,6 +771,14 @@
         "PartialEq"
       ],
       "built": "none"
+    },
+    {
+      "id": "type:BlockShapes.properties",
+      "hash": "de8ac933f8a6065033b46ca6293a6b1d"
+    },
+    {
+      "id": "type:BlockShapes.values",
+      "hash": "140e2095f329f8405ec7a8dbbb614a9a"
     },
     {
       "id": "type:BlockState",
@@ -849,6 +939,10 @@
     {
       "id": "type:GameProfile.name",
       "hash": "f9dca1c6c773350922929ef74e7cd6e0"
+    },
+    {
+      "id": "type:GameProfile.properties",
+      "hash": "bbb2c72c64cc76bfa299b8249ae76a79"
     },
     {
       "id": "type:GameRuleReadError",
@@ -1289,7 +1383,7 @@
         "count",
         "components"
       ],
-      "built_at": "src/core.rs:250"
+      "built_at": "src/core.rs:297"
     },
     {
       "id": "type:Stack.count",
@@ -1326,6 +1420,14 @@
       "built": "none"
     },
     {
+      "id": "type:StateLight.properties",
+      "hash": "60f149b2216608634d67060c3dce3bf5"
+    },
+    {
+      "id": "type:StateLight.values",
+      "hash": "c177521c8f12eacc847bdb78d4f0e61b"
+    },
+    {
       "id": "type:StateMatchError",
       "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
       "impls": [
@@ -1335,6 +1437,25 @@
         "Eq",
         "PartialEq"
       ]
+    },
+    {
+      "id": "type:StateProperty",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:StateProperty.name",
+      "hash": "3ecda92b7bccf7aab5ac9024a0c19d2d"
+    },
+    {
+      "id": "type:StateProperty.values",
+      "hash": "31408ac3530d19bfb3b2840bc0503a99"
     },
     {
       "id": "type:Tag",

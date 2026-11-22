@@ -1,6 +1,6 @@
 [package]
 name = "mod-right_click_crops"
-version = "2.0.1"
+version = "2.1.0"
 edition = "2024"
 description = "Right-click harvesting for supported crops and plants in Horizon"
 publish = false
