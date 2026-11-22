@@ -1,0 +1,1460 @@
+{
+  "schema": 1,
+  "made_for": "f00125f61f794aaa3d4e950d301f353b35b6ee3d",
+  "entries": [
+    {
+      "id": "capability:registries",
+      "hash": "2d511d9adee14cb3f84921d93b664c15"
+    },
+    {
+      "id": "fn:java_math::log",
+      "hash": "8b76b8fca1aefd214bfaf272dae43751"
+    },
+    {
+      "id": "fn:strict_math::log",
+      "hash": "8b76b8fca1aefd214bfaf272dae43751"
+    },
+    {
+      "id": "handle:Block::new",
+      "hash": "50d067ccb3b44cba9e1679121f3f445f"
+    },
+    {
+      "id": "handle:BlockEntityRef::level",
+      "hash": "e79ecb1ef97ada2c7c75515255bfe160"
+    },
+    {
+      "id": "handle:BlockEntityRef::name",
+      "hash": "a0283a42c13fb677205b2391b1c62377"
+    },
+    {
+      "id": "handle:BlockEntityRef::position",
+      "hash": "ac4b6d4ae5d7c5c6f446a66f8f799a64"
+    },
+    {
+      "id": "handle:BlockHit::new",
+      "hash": "aeb0cdddd2e7fcc99f65831edb0555cd"
+    },
+    {
+      "id": "handle:BlockKey::id",
+      "hash": "26da8cdb0b1a5223b09d47ae1f48653c"
+    },
+    {
+      "id": "handle:BlockPos::new",
+      "hash": "ff4ee9faff730aa6f23f8ea2fd40049f"
+    },
+    {
+      "id": "handle:BlockState::block",
+      "hash": "8d027d482497b091963c426081d5b15c"
+    },
+    {
+      "id": "handle:BlockState::property",
+      "hash": "5f026f00a730e5177aa7406d7ea20d4e"
+    },
+    {
+      "id": "handle:BlockState::with",
+      "hash": "97f3d6effe0f7134167921f1a5d1ece3"
+    },
+    {
+      "id": "handle:BlockStateRecord::new",
+      "hash": "2d353896bfc60d68a3a8a07b850fc72a"
+    },
+    {
+      "id": "handle:BlockStates::matches",
+      "hash": "c4e212bd95183df00598a0afafebb6b3"
+    },
+    {
+      "id": "handle:BlockUpdateFlags::CLIENTS",
+      "hash": "6f081a55e375ea60326ef5f35f1e0f7f"
+    },
+    {
+      "id": "handle:BlockUpdateFlags::KNOWN_SHAPE",
+      "hash": "c8591cc09acb331da9eff929d94390e3"
+    },
+    {
+      "id": "handle:BlockUpdateFlags::NEIGHBORS",
+      "hash": "2bb2955b2831056cc37a0837a48d595d"
+    },
+    {
+      "id": "handle:BlockUpdateFlags::SUPPRESS_DROPS",
+      "hash": "1e6a3985562b1e69521b60ef22f99eee"
+    },
+    {
+      "id": "handle:EntityRef::id",
+      "hash": "deb543bed578006f818bfc89a626fb5f"
+    },
+    {
+      "id": "handle:EntityRef::is_shift_key_down",
+      "hash": "534c242e6d763105008a019d9827dad5"
+    },
+    {
+      "id": "handle:EntityRef::level",
+      "hash": "7a0d0a22bb6055532aa2d1078130588d"
+    },
+    {
+      "id": "handle:EntityRef::name",
+      "hash": "b88495a60a96e624c771500dfe4f75ff"
+    },
+    {
+      "id": "handle:EntityRef::position",
+      "hash": "603b05c7a847eeca7e0168ec0880521d"
+    },
+    {
+      "id": "handle:EntityRef::push",
+      "hash": "c06888b7074ac3be9d0620da2a89c9de"
+    },
+    {
+      "id": "handle:EntityRef::remove",
+      "hash": "036493c6ac6c369ae5b01304e8a0e6f1"
+    },
+    {
+      "id": "handle:EquipmentSlot::ALL",
+      "hash": "5e84068a28fefe258155e33f34a3e250"
+    },
+    {
+      "id": "handle:GameMode::ALL",
+      "hash": "17dd5cf3537e3de1dde46ea801ee22b4"
+    },
+    {
+      "id": "handle:GameMode::id",
+      "hash": "8e07fd62d57c09bb87fca49faef5733d"
+    },
+    {
+      "id": "handle:GameMode::name",
+      "hash": "78008b6a71835d1197a5a6087e779d11"
+    },
+    {
+      "id": "handle:GameProfile::new",
+      "hash": "bbe57824a9bd4c1da59e182157761c87"
+    },
+    {
+      "id": "handle:Item::new",
+      "hash": "de0484764c6428ceebb240587e9a259e"
+    },
+    {
+      "id": "handle:ItemDrop::new",
+      "hash": "fe4eaebc61d3e1194aecce0ee18f245c"
+    },
+    {
+      "id": "handle:ItemKey::id",
+      "hash": "243ae413f163c597d8f150188027b933"
+    },
+    {
+      "id": "handle:LevelDimension::key",
+      "hash": "8d45247013cf9c9fed7586afe84536a0"
+    },
+    {
+      "id": "handle:LevelKey::id",
+      "hash": "1bc690e5ba73208a1627f4beb55f1852"
+    },
+    {
+      "id": "handle:LevelRef::block",
+      "hash": "8c3219a59cbcf42175a135dcabdca388"
+    },
+    {
+      "id": "handle:LevelRef::block_drops",
+      "hash": "982e941689d0e76c1a6c67525823fa55"
+    },
+    {
+      "id": "handle:LevelRef::block_property",
+      "hash": "ca456cc1ed699d48dcff7721f5944b54"
+    },
+    {
+      "id": "handle:LevelRef::block_state",
+      "hash": "692c17bda97675f26dedb473e5e63fa3"
+    },
+    {
+      "id": "handle:LevelRef::game_rule",
+      "hash": "50e83d9e06a9f6c9fe531a4720f6baca"
+    },
+    {
+      "id": "handle:LevelRef::pop_resource",
+      "hash": "c36182212cc60b7e58f006204ea64a79"
+    },
+    {
+      "id": "handle:LevelRef::set_block",
+      "hash": "c9e1728bcc9057d9bc8dbbfac299039b"
+    },
+    {
+      "id": "handle:LevelRef::world_border",
+      "hash": "998981cac4c9a972c11091a9481e4a4f"
+    },
+    {
+      "id": "handle:LivingRef::entity",
+      "hash": "dced0582a4cfcf0538b8424603a589c0"
+    },
+    {
+      "id": "handle:LivingRef::equipment",
+      "hash": "96573ad4d27d4465dc777af7778ccf9c"
+    },
+    {
+      "id": "handle:LivingRef::id",
+      "hash": "a35157ce66e09698aa387960576e25ab"
+    },
+    {
+      "id": "handle:PlayerRef::entity",
+      "hash": "4496ceffbfa2911daa23e6d4fcd769f8"
+    },
+    {
+      "id": "handle:PlayerRef::game_mode",
+      "hash": "0d2c95afc2bc41c1db034e04338529a5"
+    },
+    {
+      "id": "handle:PlayerRef::inventory",
+      "hash": "6d1c9e71d1532ca77c7780387e38bb96"
+    },
+    {
+      "id": "handle:PlayerRef::inventory_slots",
+      "hash": "b84906dee50a16b75b1bbd50e6a6088f"
+    },
+    {
+      "id": "handle:PlayerRef::level",
+      "hash": "94de591cba28f2632efe5780288b4afb"
+    },
+    {
+      "id": "handle:PlayerRef::name",
+      "hash": "73d71aebdf3cf52d186208e5527c483b"
+    },
+    {
+      "id": "handle:PlayerRef::profile",
+      "hash": "9ed20c33329cfca1fe990e7b19764efb"
+    },
+    {
+      "id": "handle:PlayerRef::set_inventory_slot",
+      "hash": "1d51b5aa0c90dbcc6c134694c57f618e"
+    },
+    {
+      "id": "handle:ProfileProperty::new",
+      "hash": "d4ca78e408139bebcc466ca6b80375c0"
+    },
+    {
+      "id": "handle:RegistrationContext::message",
+      "hash": "5b614b5825f5d5b4937cb4f3f11c6468"
+    },
+    {
+      "id": "handle:RegistrationContext::setting",
+      "hash": "987f844917f992966a371eea82546e7b"
+    },
+    {
+      "id": "handle:SettingSpec::read",
+      "hash": "04109ac08f69e0ba8bda5cd33082aa5c"
+    },
+    {
+      "id": "handle:SettingSpec::toggle",
+      "hash": "4c8c8a4e01aa1427da9214f6a8a508ae"
+    },
+    {
+      "id": "handle:StateConstraint::new",
+      "hash": "4f3c780a559078b6f886ffe8b4cf5d75"
+    },
+    {
+      "id": "handle:Tag::id",
+      "hash": "0b402448a1e313ac2e52b2bcad8d7915"
+    },
+    {
+      "id": "handle:item::item_stack::ItemStack::count",
+      "hash": "44a5eeef4eb43254daba1f039a9538ef"
+    },
+    {
+      "id": "handle:item::item_stack::ItemStack::item",
+      "hash": "a2db9458e996e30af3d2b680866641f3"
+    },
+    {
+      "id": "handle:item::item_stack::ItemStack::new",
+      "hash": "c1d95a503dc9868b8968bdc15c843e44"
+    },
+    {
+      "id": "handle:item::item_stack::ItemStack::remove",
+      "hash": "571b95c5174eb19f46c96e91ac20dccd"
+    },
+    {
+      "id": "handle:item::item_stack::ItemStack::shrink",
+      "hash": "7e07f2a4d0002ed17956eee9218eafc9"
+    },
+    {
+      "id": "hook:block_drops",
+      "hash": "236965df1ff213c3cffe0b2b87f30181"
+    },
+    {
+      "id": "hook:block_drops.breaker",
+      "hash": "5bc667e71b12840a6db54d95f9b756dd"
+    },
+    {
+      "id": "hook:block_drops.pos",
+      "hash": "889ff6ace6d154d65aab2756943f72fd"
+    },
+    {
+      "id": "hook:block_drops.state",
+      "hash": "50343345824ded9d6eabdee5f9b58467"
+    },
+    {
+      "id": "hook:block_drops.tool",
+      "hash": "6e56799cb42ca0d0e04e000b49616a4d"
+    },
+    {
+      "id": "hook:blocks",
+      "hash": "21bf9da189f8c75f62a97d22a2a1e124"
+    },
+    {
+      "id": "hook:blocks.blocks",
+      "hash": "8ae83a8910d9b7357ef9e3026e184e52"
+    },
+    {
+      "id": "hook:items",
+      "hash": "21bf9da189f8c75f62a97d22a2a1e124"
+    },
+    {
+      "id": "hook:items.items",
+      "hash": "f6a27e59f7ac75dc069a65225f7d109c"
+    },
+    {
+      "id": "hook:right_click_block",
+      "hash": "75683cb4cbc9ff9d55473aa1790cc56c"
+    },
+    {
+      "id": "hook:right_click_block.cancellation_result",
+      "hash": "d49260772a5c6ae956fe090cdfeaa25d"
+    },
+    {
+      "id": "hook:right_click_block.click",
+      "hash": "35a379d73b404bfdd553663b201f58e5"
+    },
+    {
+      "id": "macro:horizon_mod",
+      "hash": "dd5820eaf44c3c9cddcad4d85933fca4"
+    },
+    {
+      "id": "method:BlockMetadata::name",
+      "hash": "c67a254113da3226344468e72867aaa6"
+    },
+    {
+      "id": "method:BlockMetadata::property",
+      "hash": "074b622e3c11a59f1f02d796bc568fe8"
+    },
+    {
+      "id": "method:BlockMetadata::with",
+      "hash": "1843a635aad55d65d48fbe8e3d22b1b6"
+    },
+    {
+      "id": "method:Hooks::block_drops",
+      "hash": "91da87ea6039a43c35a3bb5beeb1495b"
+    },
+    {
+      "id": "method:Hooks::blocks",
+      "hash": "4fab77f1c6734e8b12e2bfbdd11d76de"
+    },
+    {
+      "id": "method:Hooks::items",
+      "hash": "f6180456d33ac43e40c531f79ec99d12"
+    },
+    {
+      "id": "method:Hooks::register",
+      "hash": "aae1d439d18717ba92291997acaaf3ec"
+    },
+    {
+      "id": "method:Hooks::right_click_block",
+      "hash": "4ebb228f0703d8ce7f6c63e1457623da"
+    },
+    {
+      "id": "method:HostBlockStates::block_states",
+      "hash": "a84f77a46e7c761b659fb504b7cf8ef2"
+    },
+    {
+      "id": "method:LevelHost::block_state",
+      "hash": "68751dd5387e02d7ee6a571c5bc5e812"
+    },
+    {
+      "id": "method:LevelHost::block_state_id",
+      "hash": "6f745acd11eb70e3ad3cca578daa42d6"
+    },
+    {
+      "id": "method:SettingsRegistrar::register_setting",
+      "hash": "8d3e54f79a1d83025acdd1683ac4a99a",
+      "reached_from": [
+        "trait:Registrar"
+      ]
+    },
+    {
+      "id": "method:item::item_stack::Component::id",
+      "hash": "132586f5592abd99fc10ba106b753ce4"
+    },
+    {
+      "id": "method:prelude::BlockStatesHost::block_state_id",
+      "hash": "9f864a3c646f63ceca8d7dbfbd91677e",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::ConfigHost::setting",
+      "hash": "b9c02212c91dfc7bf8273a3adb173fa5",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::ConfigServerHost::game_rule",
+      "hash": "8e5a31a2e5e8181f061c7bc96cc33b92",
+      "reached_from": [
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::EntitiesHost::entity",
+      "hash": "a35b63a55ef61ea9789749256fc45951",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::EntitiesHost::level",
+      "hash": "9a0c614cae197ac6e1fcca5410a3a62a",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::LivingHost::living",
+      "hash": "69ce2bc6511768cb6064289ee5b30bc6",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "method:prelude::PlayersHost::player",
+      "hash": "17d58c70c379efb80725f99428a4eb6d",
+      "reached_from": [
+        "trait:ClientHost",
+        "trait:Host",
+        "trait:ServerHost"
+      ]
+    },
+    {
+      "id": "part:block",
+      "hash": "b01d711e4da4a88887ab44f5b3e392b3"
+    },
+    {
+      "id": "part:entity",
+      "hash": "39de1e7c3068d335c26f010c56ec5a04"
+    },
+    {
+      "id": "part:item",
+      "hash": "e68d8751e1a6de7ec8d17e3356bead2f"
+    },
+    {
+      "id": "trait:BlockMetadata",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:ClientHost",
+      "hash": "61a7d7c2aae004ff03e2ad1c845b864d"
+    },
+    {
+      "id": "trait:Hooks",
+      "hash": "fb4e789435e197f585d6ad8af6888d00"
+    },
+    {
+      "id": "trait:Host",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:HostBlockStates",
+      "hash": "827e48022d21fc53887f1b38062a45d3"
+    },
+    {
+      "id": "trait:LevelHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:Registrar",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:ServerHost",
+      "hash": "f180869612de98e207238ace823c8407"
+    },
+    {
+      "id": "trait:SettingsRegistrar",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:item::item_stack::Component",
+      "hash": "f8ba799e9cfd0203819457c7e5fa8721"
+    },
+    {
+      "id": "trait:prelude::BlockStatesHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:prelude::ConfigHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:prelude::ConfigServerHost",
+      "hash": "f180869612de98e207238ace823c8407"
+    },
+    {
+      "id": "trait:prelude::EntitiesHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:prelude::LivingHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "trait:prelude::PlayersHost",
+      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
+    },
+    {
+      "id": "type:ArmPose",
+      "hash": "98b3469e9995fd614f5a084f4d56d0b4",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Deserialize",
+        "Eq",
+        "PartialEq",
+        "Serialize"
+      ]
+    },
+    {
+      "id": "type:ArmPose.Item",
+      "hash": "c73179f38decdb26e53b38cf7fac45be"
+    },
+    {
+      "id": "type:Block",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Declaration",
+        "Default",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:Block.id",
+      "hash": "f35988edc1e821d223cab89badcdf982"
+    },
+    {
+      "id": "type:Block.item",
+      "hash": "e382aa46ed0cf0dbaf51dd44289fa471"
+    },
+    {
+      "id": "type:BlockClick",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "From<BlockClick<'a>>"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockClick.hand",
+      "hash": "0679be889d181e5efde4162f3e741f9b"
+    },
+    {
+      "id": "type:BlockClick.hit",
+      "hash": "7cca7b6c996f84d9a4a017e9ffceeec3"
+    },
+    {
+      "id": "type:BlockClick.player",
+      "hash": "2654eb104918f5f6f0fa045e7b186d8f"
+    },
+    {
+      "id": "type:BlockClick.pos",
+      "hash": "54020f996c6322ca7474c61a0626a7dc"
+    },
+    {
+      "id": "type:BlockClick.stack",
+      "hash": "931d905972b253c60c532902d6280f88"
+    },
+    {
+      "id": "type:BlockDropsEvent",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "built": "none"
+    },
+    {
+      "id": "type:BlockDropsEvent.breaker",
+      "hash": "3b902e3509d861c6f0c4d6771b838b11"
+    },
+    {
+      "id": "type:BlockDropsEvent.pos",
+      "hash": "093b4d6bbdc381bd12d655669bb550cc"
+    },
+    {
+      "id": "type:BlockDropsEvent.state",
+      "hash": "6a3764d81a6410271157fda13ff5caee"
+    },
+    {
+      "id": "type:BlockDropsEvent.tool",
+      "hash": "2dcd39776388fad626a54cd52ddae699"
+    },
+    {
+      "id": "type:BlockEntityRef",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Fields",
+        "Hash",
+        "PartStateHolder",
+        "PartialEq",
+        "Sealed"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockHit",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockHit.inside",
+      "hash": "ef8a190a6325d8081bf829a5c1a4479f"
+    },
+    {
+      "id": "type:BlockKey",
+      "hash": "4ea2ff897957788f427a70b5ebcd6910",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockPos",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Default",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockPos.x",
+      "hash": "e3d550aa4010ba6cf19b98c95839067c"
+    },
+    {
+      "id": "type:BlockPos.z",
+      "hash": "e3d550aa4010ba6cf19b98c95839067c"
+    },
+    {
+      "id": "type:BlockProperties",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Default",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockShapes",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockState",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "From<BlockStateRecord>",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockStateProperty",
+      "hash": "c47d1a51ade6c43ffcc109e6315c4a87",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:BlockStateRecord",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "From<&BlockState>",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockStateRecord.block",
+      "hash": "c97db5ec8cfd2f343f3ed6b57f9b65fc"
+    },
+    {
+      "id": "type:BlockStateRecord.state",
+      "hash": "e298f5ceb18fd98383f37ba53e905516"
+    },
+    {
+      "id": "type:BlockStates",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "impls": [
+        "BlockMetadata"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlockUpdateFlags",
+      "hash": "4ea2ff897957788f427a70b5ebcd6910",
+      "impls": [
+        "BitOr",
+        "Clone",
+        "Copy",
+        "Debug",
+        "Default",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:BlocksEvent",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "built": "none"
+    },
+    {
+      "id": "type:BlocksEvent.blocks",
+      "hash": "4ff13958c099f593958ce42cbc15f042"
+    },
+    {
+      "id": "type:Compound",
+      "hash": "7b92e054fd7677e5806c4d4967fed482",
+      "impls": [
+        "From<&item::item_stack::Components>",
+        "TryFrom<Tag>"
+      ]
+    },
+    {
+      "id": "type:CustomArmPose",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Deserialize",
+        "Eq",
+        "PartialEq",
+        "Serialize"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:EntityRef",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "From<LivingRef>",
+        "From<PlayerRef>",
+        "Hash",
+        "PartStateHolder",
+        "PartialEq",
+        "Sealed"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:EquipmentSlot",
+      "hash": "d724d2e2dd5a0fb82a98f5b160abd8dd",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:EquipmentSlot.OffHand",
+      "hash": "09cf53613455dd3a2a01f97f6911f450"
+    },
+    {
+      "id": "type:GameMode",
+      "hash": "b175cf54c028e9cae9adac85c6e3c4fe",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:GameMode.Survival",
+      "hash": "f85be3df5164a450eeca549657fda522"
+    },
+    {
+      "id": "type:GameProfile",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:GameProfile.name",
+      "hash": "f9dca1c6c773350922929ef74e7cd6e0"
+    },
+    {
+      "id": "type:GameRuleReadError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:GameRuleValue",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Deserialize",
+        "Display",
+        "Eq",
+        "PartialEq",
+        "Serialize"
+      ]
+    },
+    {
+      "id": "type:GameRuleValue.Bool",
+      "hash": "41295770d6dcc1a61a55542d9ae86006"
+    },
+    {
+      "id": "type:Hand",
+      "hash": "af455f1820bb58d85b99556cba897a90",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:Hand.Main",
+      "hash": "9997461e1a633098ecbd8e2a04846172"
+    },
+    {
+      "id": "type:HostSide",
+      "hash": "636810fdf90216685bf68f720004453e"
+    },
+    {
+      "id": "type:HostSide.Client",
+      "hash": "567a8b2e9a6aee189a45d7d20b2f4f8d"
+    },
+    {
+      "id": "type:HostSide.Server",
+      "hash": "e6c4150550361365a2cfcc3d00774420"
+    },
+    {
+      "id": "type:InteractionResult",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Default",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:InteractionResult.Success",
+      "hash": "c480cb3063f5bd5bdcfd798853e87d3b"
+    },
+    {
+      "id": "type:Item",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Declaration",
+        "Default",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:Item.block",
+      "hash": "ecc417d83ecd5a47369e53feda852088"
+    },
+    {
+      "id": "type:Item.id",
+      "hash": "ee65e4037bd3adfb52e3593205b8f846"
+    },
+    {
+      "id": "type:ItemDrop",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:ItemDrop.age",
+      "hash": "2f28add5f27b4ba23cd08baa2851eca2"
+    },
+    {
+      "id": "type:ItemDrop.position",
+      "hash": "fda9d44f67ae652652e820f213a66db9"
+    },
+    {
+      "id": "type:ItemDrop.stack",
+      "hash": "ce3fd8c30f7ed346e8ec310574e66cf2"
+    },
+    {
+      "id": "type:ItemDrop.target",
+      "hash": "8a75ef7f3585990bbe85cf8564b4bab1"
+    },
+    {
+      "id": "type:ItemKey",
+      "hash": "4ea2ff897957788f427a70b5ebcd6910",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:ItemsEvent",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "built": "none"
+    },
+    {
+      "id": "type:ItemsEvent.items",
+      "hash": "e6d07c68fb2fb50c86352ec5829a60d2"
+    },
+    {
+      "id": "type:LevelDimension",
+      "hash": "7d76d028dda0a77f63e817d2db701c44",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:LevelKey",
+      "hash": "4ea2ff897957788f427a70b5ebcd6910",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Display",
+        "Eq",
+        "Hash",
+        "PartialEq",
+        "TryFrom<String>"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:LevelReadError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    },
+    {
+      "id": "type:LevelRef",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:LevelWriteError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "From<LevelReadError>",
+        "From<block::block_metadata::BlockStateError>",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    },
+    {
+      "id": "type:LivingRef",
+      "hash": "4ea2ff897957788f427a70b5ebcd6910",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:LogicalSide",
+      "hash": "cd1949c8fd11f89c4363ae31352fbe8f",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:PlayerDataRefusal",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "From<item::item_stack::StackWriteError>",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    },
+    {
+      "id": "type:PlayerDataRefusal.Stack",
+      "hash": "5961b0fd09266752d77683d78da4797e"
+    },
+    {
+      "id": "type:PlayerRef",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Fields",
+        "Hash",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:ProfileProperty",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:ProfileProperty.name",
+      "hash": "6859b1e7f4a766151cfd3d4551d3f897"
+    },
+    {
+      "id": "type:PushReaction",
+      "hash": "7f9fe1b790f22ee061a44f7a8550370d",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:RandomTicks",
+      "hash": "f8237eeab083de4ddbd4116accf3168c",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:Rarity",
+      "hash": "28af54d00f606763f589c3af073c11ab",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:RegistrationContext",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "RegistrationContextNew"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:RegistrationReadError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Display",
+        "Eq",
+        "Error",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:RemovalReason",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:RenderShape",
+      "hash": "2b02ee46af5251d8cc905379e70eabf3",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:RightClickBlockEvent",
+      "hash": "b85c928b116ba7e2e6348f4381fa8060",
+      "built": "none"
+    },
+    {
+      "id": "type:RightClickBlockEvent.cancellation_result",
+      "hash": "8df48687216b50cf31451a97e5105c68"
+    },
+    {
+      "id": "type:RightClickBlockEvent.click",
+      "hash": "306793d86eed873631ecc934d5e84271"
+    },
+    {
+      "id": "type:SettingError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Display",
+        "Eq",
+        "Error",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:SettingKind",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:SettingSpec",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:SettingSpec.key",
+      "hash": "79e0e3129f9feeebdb208bc049a59b11"
+    },
+    {
+      "id": "type:SettingSpec.label",
+      "hash": "79e0e3129f9feeebdb208bc049a59b11"
+    },
+    {
+      "id": "type:SettingValue",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:SettingValue.Toggle",
+      "hash": "35d0c7b2b1f9a295131d04ef95b8b416"
+    },
+    {
+      "id": "type:ShapeEntityKind",
+      "hash": "75da8c2adbd0c1ef173d22a1f8d5683f",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "Ord",
+        "PartialEq",
+        "PartialOrd"
+      ]
+    },
+    {
+      "id": "type:ShapeEntityKind.Item",
+      "hash": "7fc0fbb2a06a2fea69db30bd39682742"
+    },
+    {
+      "id": "type:Stack",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "PartialEq"
+      ],
+      "built": "full",
+      "fields_hash": "cf958aaa2cbf7fcfd71c34e1188c449c",
+      "fields": [
+        "item",
+        "count",
+        "components"
+      ],
+      "built_at": "src/core.rs:250"
+    },
+    {
+      "id": "type:Stack.count",
+      "hash": "440cfbc8e4588bb5a2d9644edf5750fd"
+    },
+    {
+      "id": "type:Stack.item",
+      "hash": "b152d9301b19b64eef53b4d5a0758bb9"
+    },
+    {
+      "id": "type:StateConstraint",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:StateConstraint.name",
+      "hash": "9cc65ce4375d1ac5ae5dfc41a986e85c"
+    },
+    {
+      "id": "type:StateLight",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Default",
+        "PartialEq"
+      ],
+      "built": "none"
+    },
+    {
+      "id": "type:StateMatchError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:Tag",
+      "hash": "a85219bbc0b4f076c29ef98c621ed349",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "From<&Compound>",
+        "Hash",
+        "PartialEq",
+        "TryFrom<Vec<u8>>"
+      ]
+    },
+    {
+      "id": "type:Tag.String",
+      "hash": "76775c2b2e431054c256bc6a1f0158f1"
+    },
+    {
+      "id": "type:TriState",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Default",
+        "Eq",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:TriState.Default",
+      "hash": "84c4f790eef2549843925b6d03b6a367"
+    },
+    {
+      "id": "type:block::block_metadata::BlockStateError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "From<StateError>",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    },
+    {
+      "id": "type:item::item_stack::ItemStack",
+      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "built": "none",
+      "paths": [
+        "ItemStack"
+      ]
+    },
+    {
+      "id": "type:item::item_stack::StackError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Display",
+        "Eq",
+        "Error",
+        "PartialEq"
+      ]
+    },
+    {
+      "id": "type:item::item_stack::StackWriteError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Eq",
+        "From<text::TextFormError>",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    },
+    {
+      "id": "type:runtime::Flow",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Copy",
+        "Debug",
+        "Eq",
+        "PartialEq"
+      ],
+      "paths": [
+        "Flow"
+      ]
+    },
+    {
+      "id": "type:runtime::Flow.Cancel",
+      "hash": "f488e2c444326318e38e0b73e3ee5ebb"
+    },
+    {
+      "id": "type:runtime::Flow.Continue",
+      "hash": "f488e2c444326318e38e0b73e3ee5ebb"
+    },
+    {
+      "id": "type:text::TextFormError",
+      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
+      "impls": [
+        "Clone",
+        "Debug",
+        "Display",
+        "Eq",
+        "Error",
+        "PartialEq",
+        "backend::NoBackend"
+      ]
+    }
+  ]
+}

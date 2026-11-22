@@ -1,0 +1,18 @@
+[package]
+name = "mod-right_click_crops"
+version = "2.0.1"
+edition = "2024"
+description = "Right-click harvesting for supported crops and plants in Horizon"
+publish = false
+license = "MIT"
+
+[dependencies]
+# The pinned SDK's API crate, fetched into .horizon/sdk/ by any `cargo horizon-mod` command.
+horizon-mod-api = { path = ".horizon/sdk/api/crates/horizon-mod-api" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+# The SDK build this mod is made for: `cargo horizon-mod update` moves it.
+[package.metadata.horizon]
+sdk = "f00125f61f794aaa3d4e950d301f353b35b6ee3d"
