@@ -102,3 +102,11 @@ The project icon was generated with Google Gemini (Nano Banana) under AyanoKaito
 Original project code and documentation are available under the [MIT License](LICENSE). Third-party materials retain their own notices in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Right-Click Crops is not an official Horizon or Minecraft project and is not affiliated with or endorsed by Mojang or Microsoft.
+
+## Building for an unreleased Horizon commit (fork notes)
+
+No signed SDK exists for a developer build such as 549005d. Build inside a Horizon checkout at that commit: install
+its `cargo-horizon-mod` (`cargo +1.99.1 install --locked --path crates/cargo-horizon-mod`), copy this repo to
+`<checkout>/modcheck/right_click_crops`, point `horizon-mod-api` at `<checkout>/crates/horizon-mod-api`, set
+`[package.metadata.horizon] sdk` to the commit, add an empty `[workspace]`, run `cargo horizon-mod build --wasm`, then
+put the Cargo.toml without `[workspace]` back into the .hmod. Such a build has no `uses.json` and fits only that commit.
