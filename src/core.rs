@@ -526,6 +526,11 @@ mod tests {
     fn shipped_tags_cover_mod_crops_and_exclude_non_replant_vanilla_members() {
         let harvestable = include_str!("../data/right_click_crops/tags/block/harvestable.json");
         assert!(harvestable.contains("\"#minecraft:crops\""));
+        // Mods that keep their crops out of #minecraft:crops, as optional entries: a missing tag
+        // must not invalidate the whole harvestable tag.
+        for tag in ["#c:crops", "#mysticalagriculture:crops", "#mysticalagradditions:crops"] {
+            assert!(harvestable.contains(&format!("{{ \"id\": \"{tag}\", \"required\": false }}")), "{tag}");
+        }
         let excluded = include_str!("../data/right_click_crops/tags/block/not_harvestable.json");
         for block in ["minecraft:melon_stem", "minecraft:pumpkin_stem", "minecraft:torchflower_crop"] {
             assert!(excluded.contains(&format!("\"{block}\"")), "{block} not excluded");

@@ -39,16 +39,16 @@
 | Harvest fruit and retain the stem | Pumpkin, melon |
 | Ordinary Horizon behaviour | Sweet berries, glow berries |
 
-### Modded crops (this fork, 2.1.0)
+### Modded crops (this fork, 2.1.x)
 
 A block from any mod is harvested and replanted like wheat when all of these hold:
 
-- it is in the block tag `right_click_crops:harvestable` (ships holding `#minecraft:crops`, the tag mods put their crops in);
+- it is in the block tag `right_click_crops:harvestable` (ships holding `#minecraft:crops`, the tag most mods put their crops in, plus the optional `#c:crops`, `#mysticalagriculture:crops` and `#mysticalagradditions:crops`);
 - it is not in `right_click_crops:not_harvestable` (ships with the vanilla stems and `torchflower_crop`);
 - it is a single block (no `half` property) and its `age` is at the highest value its own state definition allows;
 - the setting **Modded crops** is on.
 
-It replants at the lowest age, paid with one of the block's own item (`Block.asItem`, the seed for a crop), from the loot first and then the inventory, exactly as the vanilla crops. A data pack can add a crop that is not in `#minecraft:crops` to `right_click_crops:harvestable`, or remove one by adding it to `right_click_crops:not_harvestable`.
+Every harvest breaks the block through the game's own break (`Level.destroyBlock`), so other mods' block-drop hooks run (Mystical Agriculture's essence, for example). It replants at the lowest age, paid with one of the block's own item (`Block.asItem`, the seed for a crop), from the loot first and then the inventory, exactly as the vanilla crops. A data pack can add a crop that is not in `#minecraft:crops` to `right_click_crops:harvestable`, or remove one by adding it to `right_click_crops:not_harvestable`.
 
 Other plants pass through unchanged.
 

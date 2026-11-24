@@ -1,5 +1,8 @@
 {
   "values": [
-    "#minecraft:crops"
+    "#minecraft:crops",
+    { "id": "#c:crops", "required": false },
+    { "id": "#mysticalagriculture:crops", "required": false },
+    { "id": "#mysticalagradditions:crops", "required": false }
   ]
 }

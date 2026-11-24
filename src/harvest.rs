@@ -5,8 +5,8 @@
 
 use crate::core::{self, Payment, Plant, SeedStack};
 use mod_api::{
-    BlockClick, BlockState, BlockUpdateFlags, ClientHost, EntityRef, EquipmentSlot, GameMode,
-    GameRuleValue, Hand, Host, HostBlockStates, ItemStack, LevelRef, PlayerRef, ServerHost,
+    BlockClick, BlockState, BlockUpdateFlags, ClientHost, EquipmentSlot, GameMode,
+    Hand, Host, HostBlockStates, ItemStack, LevelRef, PlayerRef, ServerHost,
     SettingSpec, SettingValue,
 };
 
@@ -32,7 +32,7 @@ fn plant_enabled(host: &dyn Host, plant: Plant) -> bool {
 /// What the harvested spot becomes when a seed pays for it.
 enum Young {
     /// Another block (torchflower goes back to its crop block).
-    Block(&'static str),
+    Initial(&'static str),
     /// The same block at this age.
     Age(String),
 }
@@ -178,7 +178,7 @@ fn target(host: &dyn Host, player: PlayerRef, level: LevelRef, click: &BlockClic
         None
     };
     let young = match crop.initial_block {
-        Some(block) => Young::Block(block),
+        Some(block) => Young::Initial(block),
         None => Young::Age("0".into()),
     };
     Some(Target::Crop(CropTarget {
@@ -244,37 +244,26 @@ pub fn on_server(host: &mut dyn ServerHost, click: &BlockClick<'_>) -> bool {
     let Some(level) = player.level(read) else { return false };
     let Some(target) = target(read, player, level, click) else { return false };
     let tool = click.stack.cloned();
-    let breaker = Some(player.entity());
     match target {
-        Target::Column(blocks) => harvest_column(host, level, tool.as_ref(), breaker, click.pos, &blocks),
-        Target::Fruit(pos) => harvest_fruit(host, level, tool.as_ref(), breaker, pos),
-        Target::Crop(crop) => harvest_crop(host, level, player, tool.as_ref(), breaker, crop),
+        Target::Column(blocks) => harvest_column(host, level, tool.as_ref(), click.pos, &blocks),
+        Target::Fruit(pos) => harvest_fruit(host, level, tool.as_ref(), pos),
+        Target::Crop(crop) => harvest_crop(host, level, player, tool.as_ref(), crop),
     }
     // The click is used even when an ordinary failure left everything unchanged.
     true
 }
 
-fn drops_enabled(host: &dyn Host, level: LevelRef) -> bool {
-    !matches!(level.game_rule(host, "block_drops"), Ok(Some(GameRuleValue::Bool(false))))
-}
-
-/// The block's own loot with the held tool, as breaking it would roll it; empty with drops off.
-fn loot(
-    host: &mut dyn ServerHost,
-    level: LevelRef,
-    pos: [i32; 3],
-    tool: Option<&ItemStack>,
-    breaker: Option<EntityRef>,
-) -> Vec<ItemStack> {
-    if !drops_enabled(host, level) {
-        return Vec::new();
-    }
-    match level.block_drops(host, pos, tool, breaker) {
-        Ok(Some(stacks)) => stacks,
-        Ok(None) => Vec::new(),
+/// Breaks the block the way the game breaks it (`Level.destroyBlock`): its loot with the held
+/// tool, then every mod's `block_drops` hook (Mystical Agriculture adds its essence there), with
+/// the `block_drops` game rule applied. The stacks come back instead of spawning, so a seed among
+/// them can pay for replanting. None when nothing broke.
+fn destroy(host: &mut dyn ServerHost, level: LevelRef, pos: [i32; 3], tool: Option<&ItemStack>) -> Option<Vec<ItemStack>> {
+    match level.destroy_block(host, pos, true, tool, true) {
+        Ok(Some(stacks)) => Some(stacks),
+        Ok(None) => None,
         Err(error) => {
-            log(&format!("loot at {pos:?} failed: {error:?}"));
-            Vec::new()
+            log(&format!("breaking {pos:?} failed: {error:?}"));
+            None
         }
     }
 }
@@ -304,34 +293,21 @@ fn harvest_column(
     host: &mut dyn ServerHost,
     level: LevelRef,
     tool: Option<&ItemStack>,
-    breaker: Option<EntityRef>,
     hit: [i32; 3],
     blocks: &[([i32; 3], BlockState)],
 ) {
-    let Some(air) = air(host) else { return };
-    let mut stacks = Vec::new();
-    for (pos, _) in blocks {
-        stacks.extend(loot(host, level, *pos, tool, breaker));
-    }
     // From the far end back to the base, so no block is left floating mid-way.
-    let mut removed: Vec<([i32; 3], BlockState)> = Vec::new();
-    for (pos, state) in blocks.iter().rev() {
-        if !write(host, level, *pos, air, update_all() | BlockUpdateFlags::SUPPRESS_DROPS) {
-            for (pos, state) in removed.iter().rev() {
-                write(host, level, *pos, *state, update_all());
-            }
-            return;
-        }
-        removed.push((*pos, *state));
+    let mut stacks = Vec::new();
+    for (pos, _) in blocks.iter().rev() {
+        let Some(dropped) = destroy(host, level, *pos, tool) else { break };
+        stacks.extend(dropped);
     }
     drop_all(host, level, hit, stacks);
 }
 
 /// A pumpkin or melon beside its attached stem; the stem stays.
-fn harvest_fruit(host: &mut dyn ServerHost, level: LevelRef, tool: Option<&ItemStack>, breaker: Option<EntityRef>, pos: [i32; 3]) {
-    let Some(air) = air(host) else { return };
-    let stacks = loot(host, level, pos, tool, breaker);
-    if write(host, level, pos, air, update_all() | BlockUpdateFlags::SUPPRESS_DROPS) {
+fn harvest_fruit(host: &mut dyn ServerHost, level: LevelRef, tool: Option<&ItemStack>, pos: [i32; 3]) {
+    if let Some(stacks) = destroy(host, level, pos, tool) {
         drop_all(host, level, pos, stacks);
     }
 }
@@ -367,14 +343,13 @@ fn harvest_crop(
     level: LevelRef,
     player: PlayerRef,
     tool: Option<&ItemStack>,
-    breaker: Option<EntityRef>,
     target: CropTarget,
 ) {
     let CropTarget { pos, state, name, planting_item, young, support_below, upper } = target;
     let young = {
         let read: &dyn Host = host;
         match &young {
-            Young::Block(initial) => read.block_state_id(initial),
+            Young::Initial(initial) => read.block_state_id(initial),
             Young::Age(age) => state.with(&read.block_states(), "age", age).ok(),
         }
     };
@@ -398,70 +373,67 @@ fn harvest_crop(
         }
     }
     let Some(air) = air(host) else { return };
-    let mut stacks = loot(host, level, pos, tool, breaker);
-
-    let (loot_seen, slots) = {
+    let slots: Vec<(u32, ItemStack)> = {
         let read: &dyn Host = host;
-        let loot_seen: Vec<Seen> = stacks.iter().map(|stack| seen(read, stack)).collect();
-        let slots: Vec<(u32, ItemStack)> = player
+        player
             .inventory_slots(read)
             .unwrap_or_default()
             .into_iter()
             .filter(|(slot, _)| *slot < 36 || *slot == OFF_HAND_SLOT)
-            .collect();
-        (loot_seen, slots)
+            .collect()
     };
-    let inventory_seen: Vec<(usize, Seen)> = {
-        let read: &dyn Host = host;
-        slots.iter().map(|(slot, stack)| (*slot as usize, seen(read, stack))).collect()
-    };
-    let payment = core::select_payment(
-        &planting_item,
-        &loot_seen,
-        inventory_seen.iter().map(|(slot, stack)| (*slot, stack)),
-    );
 
-    // Charge the inventory first, so a failed charge never replants for free; a failed world
-    // write below gives the item back.
-    let mut charged: Option<(u32, ItemStack)> = None;
-    if let Payment::Inventory(slot) = payment {
-        let slot = slot as u32;
-        let Some((_, original)) = slots.iter().find(|(s, _)| *s == slot) else { return };
-        let left = original.clone().shrink(1);
-        if let Err(error) = player.set_inventory_slot(host, slot, left) {
-            log(&format!("paying from slot {slot} failed: {error:?}"));
+    // A pitcher crop's upper half goes quietly first, so breaking the lower half drops one
+    // plant's loot and nothing pops off.
+    if let Some((upper_pos, _)) = upper {
+        let quiet = BlockUpdateFlags::CLIENTS | BlockUpdateFlags::KNOWN_SHAPE | BlockUpdateFlags::SUPPRESS_DROPS;
+        if !write(host, level, upper_pos, air, quiet) {
             return;
         }
-        charged = Some((slot, original.clone()));
     }
-
-    let after = if payment == Payment::None { air } else { young };
-    let written = match upper {
-        Some((upper_pos, upper_state)) => {
-            let quiet = BlockUpdateFlags::CLIENTS | BlockUpdateFlags::KNOWN_SHAPE | BlockUpdateFlags::SUPPRESS_DROPS;
-            if !write(host, level, upper_pos, air, quiet) {
-                false
-            } else if write(host, level, pos, after, update_all()) {
-                true
-            } else {
-                write(host, level, upper_pos, upper_state, update_all());
-                false
-            }
-        }
-        None => write(host, level, pos, after, update_all()),
-    };
-    if !written {
-        if let Some((slot, original)) = charged {
-            if let Err(error) = player.set_inventory_slot(host, slot, Some(original)) {
-                log(&format!("refund to slot {slot} failed: {error:?}"));
-            }
+    let Some(mut stacks) = destroy(host, level, pos, tool) else {
+        if let Some((upper_pos, upper_state)) = upper {
+            write(host, level, upper_pos, upper_state, update_all());
         }
         return;
-    }
+    };
 
-    if let Payment::Loot(index) = payment {
-        let paid = stacks.remove(index);
-        if let Some(left) = paid.shrink(1) {
+    let payment = {
+        let read: &dyn Host = host;
+        let loot_seen: Vec<Seen> = stacks.iter().map(|stack| seen(read, stack)).collect();
+        let inventory_seen: Vec<(usize, Seen)> =
+            slots.iter().map(|(slot, stack)| (*slot as usize, seen(read, stack))).collect();
+        core::select_payment(&planting_item, &loot_seen, inventory_seen.iter().map(|(slot, stack)| (*slot, stack)))
+    };
+
+    // The crop is broken and its drops are in hand. Replant only once the seed is paid; a
+    // failed write gives an inventory seed back, and a loot seed simply stays in the drops.
+    let paid = match payment {
+        Payment::None => false,
+        Payment::Loot(_) => write(host, level, pos, young, update_all()),
+        Payment::Inventory(slot) => {
+            let slot = slot as u32;
+            match slots.iter().find(|(s, _)| *s == slot) {
+                None => false,
+                Some((_, original)) => match player.set_inventory_slot(host, slot, original.clone().shrink(1)) {
+                    Err(error) => {
+                        log(&format!("paying from slot {slot} failed: {error:?}"));
+                        false
+                    }
+                    Ok(_) if write(host, level, pos, young, update_all()) => true,
+                    Ok(_) => {
+                        if let Err(error) = player.set_inventory_slot(host, slot, Some(original.clone())) {
+                            log(&format!("refund to slot {slot} failed: {error:?}"));
+                        }
+                        false
+                    }
+                },
+            }
+        }
+    };
+    if let (true, Payment::Loot(index)) = (paid, payment) {
+        let seed = stacks.remove(index);
+        if let Some(left) = seed.shrink(1) {
             stacks.insert(index, left);
         }
     }

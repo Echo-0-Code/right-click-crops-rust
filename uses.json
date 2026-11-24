@@ -19,28 +19,12 @@
       "hash": "50d067ccb3b44cba9e1679121f3f445f"
     },
     {
-      "id": "handle:BlockEntityRef::level",
-      "hash": "e79ecb1ef97ada2c7c75515255bfe160"
-    },
-    {
-      "id": "handle:BlockEntityRef::name",
-      "hash": "a0283a42c13fb677205b2391b1c62377"
-    },
-    {
-      "id": "handle:BlockEntityRef::position",
-      "hash": "ac4b6d4ae5d7c5c6f446a66f8f799a64"
-    },
-    {
       "id": "handle:BlockHit::new",
       "hash": "aeb0cdddd2e7fcc99f65831edb0555cd"
     },
     {
       "id": "handle:BlockKey::id",
       "hash": "26da8cdb0b1a5223b09d47ae1f48653c"
-    },
-    {
-      "id": "handle:BlockPos::new",
-      "hash": "ff4ee9faff730aa6f23f8ea2fd40049f"
     },
     {
       "id": "handle:BlockState::block",
@@ -135,10 +119,6 @@
       "hash": "de0484764c6428ceebb240587e9a259e"
     },
     {
-      "id": "handle:ItemDrop::new",
-      "hash": "fe4eaebc61d3e1194aecce0ee18f245c"
-    },
-    {
       "id": "handle:ItemKey::id",
       "hash": "243ae413f163c597d8f150188027b933"
     },
@@ -159,10 +139,6 @@
       "hash": "8c3219a59cbcf42175a135dcabdca388"
     },
     {
-      "id": "handle:LevelRef::block_drops",
-      "hash": "982e941689d0e76c1a6c67525823fa55"
-    },
-    {
       "id": "handle:LevelRef::block_property",
       "hash": "ca456cc1ed699d48dcff7721f5944b54"
     },
@@ -171,12 +147,16 @@
       "hash": "692c17bda97675f26dedb473e5e63fa3"
     },
     {
-      "id": "handle:LevelRef::game_rule",
-      "hash": "50e83d9e06a9f6c9fe531a4720f6baca"
+      "id": "handle:LevelRef::destroy_block",
+      "hash": "ed5987dc8551ce50aaf906cd59dd5785"
     },
     {
       "id": "handle:LevelRef::pop_resource",
       "hash": "c36182212cc60b7e58f006204ea64a79"
+    },
+    {
+      "id": "handle:LevelRef::seed",
+      "hash": "851933cef8b921dc218c91509674fb47"
     },
     {
       "id": "handle:LevelRef::set_block",
@@ -197,6 +177,10 @@
     {
       "id": "handle:LivingRef::id",
       "hash": "a35157ce66e09698aa387960576e25ab"
+    },
+    {
+      "id": "handle:PlayerRef::destroy_block",
+      "hash": "dd967fe55c5557ef831e9c39d5d51822"
     },
     {
       "id": "handle:PlayerRef::entity",
@@ -287,26 +271,6 @@
       "hash": "7e07f2a4d0002ed17956eee9218eafc9"
     },
     {
-      "id": "hook:block_drops",
-      "hash": "236965df1ff213c3cffe0b2b87f30181"
-    },
-    {
-      "id": "hook:block_drops.breaker",
-      "hash": "5bc667e71b12840a6db54d95f9b756dd"
-    },
-    {
-      "id": "hook:block_drops.pos",
-      "hash": "889ff6ace6d154d65aab2756943f72fd"
-    },
-    {
-      "id": "hook:block_drops.state",
-      "hash": "50343345824ded9d6eabdee5f9b58467"
-    },
-    {
-      "id": "hook:block_drops.tool",
-      "hash": "6e56799cb42ca0d0e04e000b49616a4d"
-    },
-    {
       "id": "hook:blocks",
       "hash": "21bf9da189f8c75f62a97d22a2a1e124"
     },
@@ -351,10 +315,6 @@
       "hash": "1843a635aad55d65d48fbe8e3d22b1b6"
     },
     {
-      "id": "method:Hooks::block_drops",
-      "hash": "91da87ea6039a43c35a3bb5beeb1495b"
-    },
-    {
       "id": "method:Hooks::blocks",
       "hash": "4fab77f1c6734e8b12e2bfbdd11d76de"
     },
@@ -373,18 +333,6 @@
     {
       "id": "method:HostBlockStates::block_states",
       "hash": "a84f77a46e7c761b659fb504b7cf8ef2"
-    },
-    {
-      "id": "method:LevelHost::block_in_tag",
-      "hash": "4f53aa8170d6be9c42b30e6d09ec15a6"
-    },
-    {
-      "id": "method:LevelHost::block_state",
-      "hash": "68751dd5387e02d7ee6a571c5bc5e812"
-    },
-    {
-      "id": "method:LevelHost::block_state_id",
-      "hash": "6f745acd11eb70e3ad3cca578daa42d6"
     },
     {
       "id": "method:SettingsRegistrar::register_setting",
@@ -421,13 +369,6 @@
       "reached_from": [
         "trait:ClientHost",
         "trait:Host",
-        "trait:ServerHost"
-      ]
-    },
-    {
-      "id": "method:prelude::ConfigServerHost::game_rule",
-      "hash": "8e5a31a2e5e8181f061c7bc96cc33b92",
-      "reached_from": [
         "trait:ServerHost"
       ]
     },
@@ -509,10 +450,6 @@
       "hash": "827e48022d21fc53887f1b38062a45d3"
     },
     {
-      "id": "trait:LevelHost",
-      "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
-    },
-    {
       "id": "trait:Registrar",
       "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
     },
@@ -535,10 +472,6 @@
     {
       "id": "trait:prelude::ConfigHost",
       "hash": "e2cde1a0bfba965c2c15677b5bc613cc"
-    },
-    {
-      "id": "trait:prelude::ConfigServerHost",
-      "hash": "f180869612de98e207238ace823c8407"
     },
     {
       "id": "trait:prelude::EntitiesHost",
@@ -570,10 +503,6 @@
       ]
     },
     {
-      "id": "type:ArmPose.Block",
-      "hash": "c73179f38decdb26e53b38cf7fac45be"
-    },
-    {
       "id": "type:ArmPose.Item",
       "hash": "c73179f38decdb26e53b38cf7fac45be"
     },
@@ -587,35 +516,7 @@
         "Default",
         "PartialEq"
       ],
-      "built": "full",
-      "fields_hash": "382077f071bf0802153b616edd617ed7",
-      "fields": [
-        "id",
-        "template",
-        "properties",
-        "state_light",
-        "shapes",
-        "collision_shapes",
-        "outline_context_shapes",
-        "collision_context_shapes",
-        "interaction_shapes",
-        "state_properties",
-        "default_state",
-        "item",
-        "open_sound",
-        "close_sound",
-        "block_item",
-        "pick_item",
-        "components",
-        "connects_to",
-        "thickness",
-        "wood_type",
-        "wall_block",
-        "sign_text_color",
-        "sign_text_glow",
-        "base_block"
-      ],
-      "built_at": "src/harvest.rs:181"
+      "built": "none"
     },
     {
       "id": "type:Block.block_item",
@@ -665,43 +566,6 @@
       "hash": "931d905972b253c60c532902d6280f88"
     },
     {
-      "id": "type:BlockDropsEvent",
-      "hash": "b85c928b116ba7e2e6348f4381fa8060",
-      "built": "none"
-    },
-    {
-      "id": "type:BlockDropsEvent.breaker",
-      "hash": "3b902e3509d861c6f0c4d6771b838b11"
-    },
-    {
-      "id": "type:BlockDropsEvent.pos",
-      "hash": "093b4d6bbdc381bd12d655669bb550cc"
-    },
-    {
-      "id": "type:BlockDropsEvent.state",
-      "hash": "6a3764d81a6410271157fda13ff5caee"
-    },
-    {
-      "id": "type:BlockDropsEvent.tool",
-      "hash": "2dcd39776388fad626a54cd52ddae699"
-    },
-    {
-      "id": "type:BlockEntityRef",
-      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
-      "impls": [
-        "Clone",
-        "Copy",
-        "Debug",
-        "Eq",
-        "Fields",
-        "Hash",
-        "PartStateHolder",
-        "PartialEq",
-        "Sealed"
-      ],
-      "built": "none"
-    },
-    {
       "id": "type:BlockHit",
       "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
       "impls": [
@@ -728,28 +592,6 @@
         "PartialEq"
       ],
       "built": "none"
-    },
-    {
-      "id": "type:BlockPos",
-      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
-      "impls": [
-        "Clone",
-        "Copy",
-        "Debug",
-        "Default",
-        "Eq",
-        "Hash",
-        "PartialEq"
-      ],
-      "built": "none"
-    },
-    {
-      "id": "type:BlockPos.x",
-      "hash": "e3d550aa4010ba6cf19b98c95839067c"
-    },
-    {
-      "id": "type:BlockPos.z",
-      "hash": "e3d550aa4010ba6cf19b98c95839067c"
     },
     {
       "id": "type:BlockProperties",
@@ -945,35 +787,6 @@
       "hash": "bbb2c72c64cc76bfa299b8249ae76a79"
     },
     {
-      "id": "type:GameRuleReadError",
-      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
-      "impls": [
-        "Clone",
-        "Copy",
-        "Debug",
-        "Eq",
-        "PartialEq"
-      ]
-    },
-    {
-      "id": "type:GameRuleValue",
-      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
-      "impls": [
-        "Clone",
-        "Copy",
-        "Debug",
-        "Deserialize",
-        "Display",
-        "Eq",
-        "PartialEq",
-        "Serialize"
-      ]
-    },
-    {
-      "id": "type:GameRuleValue.Bool",
-      "hash": "41295770d6dcc1a61a55542d9ae86006"
-    },
-    {
       "id": "type:Hand",
       "hash": "af455f1820bb58d85b99556cba897a90",
       "impls": [
@@ -1037,32 +850,6 @@
       "hash": "ee65e4037bd3adfb52e3593205b8f846"
     },
     {
-      "id": "type:ItemDrop",
-      "hash": "af9ca6ca069faa7a811f2bd91230fdc1",
-      "impls": [
-        "Clone",
-        "Debug",
-        "PartialEq"
-      ],
-      "built": "none"
-    },
-    {
-      "id": "type:ItemDrop.age",
-      "hash": "2f28add5f27b4ba23cd08baa2851eca2"
-    },
-    {
-      "id": "type:ItemDrop.position",
-      "hash": "fda9d44f67ae652652e820f213a66db9"
-    },
-    {
-      "id": "type:ItemDrop.stack",
-      "hash": "ce3fd8c30f7ed346e8ec310574e66cf2"
-    },
-    {
-      "id": "type:ItemDrop.target",
-      "hash": "8a75ef7f3585990bbe85cf8564b4bab1"
-    },
-    {
       "id": "type:ItemKey",
       "hash": "4ea2ff897957788f427a70b5ebcd6910",
       "impls": [
@@ -1109,18 +896,6 @@
         "TryFrom<String>"
       ],
       "built": "none"
-    },
-    {
-      "id": "type:LevelReadError",
-      "hash": "6fa6b9ef5c0ec4cda16800c710d41145",
-      "impls": [
-        "Clone",
-        "Copy",
-        "Debug",
-        "Eq",
-        "PartialEq",
-        "backend::NoBackend"
-      ]
     },
     {
       "id": "type:LevelRef",

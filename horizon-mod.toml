@@ -1,6 +1,6 @@
 id = "right_click_crops"
 name = "Right-Click Crops"
-version = "2.1.0"
+version = "2.1.1"
 description = "Survival harvesting with individual settings for sixteen plant families, plus modded crops through the right_click_crops:harvestable block tag."
 authors = ["AyanoKaito", "Echo-0-Code (modded crops)"]
 license = "MIT"
@@ -13,5 +13,5 @@ side = "both"
 capabilities = ["registries"]
 
 [wasm]
-sha512 = "f6b4f597b402419ed6916cf7add904e1c27cc25862c1e8aeebe7467f2fb8875ab6db14f098de98e2655d35860d1136ed77af4328dddb7c632681504f39dd38b7"
+sha512 = "11be76213966ac2680d6b27af43e7db321020fda05b765dd8ff5f44e58ad7f75820a5bba9adc0064e57435aa0775f5233657ceb239c42b96e97b5bb452359f63"
 toolchain = "1.99.1 58cf8f9c35b355199727627d07ae34a4e2846d67"
